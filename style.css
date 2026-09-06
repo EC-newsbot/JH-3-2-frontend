@@ -269,3 +269,11 @@ th {
     flex-direction: column;
   }
 }
+
+
+#data-table-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
