@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto AI Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Crypto AI Assistant</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="chat">채팅</button>
+      <button class="tab-btn" data-tab="data">데이터 관리</button>
+      <button class="tab-btn" data-tab="history">대화 기록</button>
+      <button class="tab-btn" data-tab="summary">요약 정보</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- 1) 채팅 화면 -->
+    <section id="tab-chat" class="tab-content active">
+      <div id="chat-messages"></div>
+      <div id="chat-loading" class="hidden">AI가 답변을 작성 중입니다...</div>
+      <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="질문을 입력하세요 (예: 비트코인 어때?)" required />
+        <button type="submit">전송</button>
+      </form>
+    </section>
+
+    <!-- 2) 데이터 관리 화면 -->
+    <section id="tab-data" class="tab-content">
+      <h2>데이터 추가</h2>
+      <form id="data-form">
+        <input type="text" id="data-coin" placeholder="코인 (예: BTC)" required />
+        <input type="date" id="data-date" required />
+        <input type="number" id="data-value" placeholder="가격" step="any" required />
+        <input type="text" id="data-memo" placeholder="메모 (선택)" />
+        <button type="submit">추가</button>
+      </form>
+
+      <h2>데이터 목록</h2>
+      <div>
+        <input type="text" id="data-filter-coin" placeholder="코인으로 필터링 (예: BTC)" />
+        <button id="data-filter-btn">조회</button>
+      </div>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>코인</th>
+            <th>날짜</th>
+            <th>가격</th>
+            <th>메모</th>
+            <th>동작</th>
+          </tr>
+        </thead>
+        <tbody id="data-table-body"></tbody>
+      </table>
+    </section>
+
+    <!-- 3) 대화 기록 화면 -->
+    <section id="tab-history" class="tab-content">
+      <h2>이전 대화 목록</h2>
+      <ul id="history-list"></ul>
+
+      <h2>선택한 대화</h2>
+      <div id="history-detail"></div>
+    </section>
+
+    <!-- 4) 요약 정보 화면 -->
+    <section id="tab-summary" class="tab-content">
+    <h2>코인 요약 정보</h2>
+    <div>
+        <select id="summary-coin">
+        <option value="BTC">BTC</option>
+        <option value="ETH">ETH</option>
+        <option value="HYPE">HYPE</option>
+        <option value="XRP">XRP</option>
+        </select>
+        <input type="date" id="summary-start-date" />
+        <input type="date" id="summary-end-date" />
+        <button id="summary-fetch-btn">조회</button>
+    </div>
+    <div id="summary-result"></div>
+    <canvas id="summary-chart" height="100"></canvas>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

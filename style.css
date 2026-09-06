@@ -1,0 +1,271 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  height: 100vh;           /* 추가: 화면 전체 높이 고정 */
+  display: flex;            /* 추가 */
+  flex-direction: column;   /* 추가 */
+  overflow: hidden;         /* 추가: 바깥 스크롤 방지 */
+}
+
+header {
+  background-color: #1e293b;
+  padding: 20px;
+  border-bottom: 1px solid #334155;
+}
+
+header h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  background-color: #334155;
+  color: #e2e8f0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tab-btn:hover {
+  background-color: #475569;
+}
+
+.tab-btn.active {
+  background-color: #3b82f6;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  flex: 1;                  /* 추가: header를 제외한 남는 공간 전부 차지 */
+  display: flex;             /* 추가 */
+  flex-direction: column;    /* 추가 */
+  min-height: 0;             /* 추가: flex 자식이 내용에 밀려 넘치지 않도록 */
+  width: 100%;                /* 추가 */
+}
+
+.tab-content {
+  display: none;
+  flex: 1;                  /* 추가 */
+  min-height: 0;             /* 추가 */
+}
+
+.tab-content.active {
+  display: flex;             /* 변경: block → flex */
+  flex-direction: column;    /* 추가 */
+}
+
+h2 {
+  font-size: 16px;
+  margin: 20px 0 10px;
+  color: #94a3b8;
+}
+
+/* 채팅 화면 */
+#chat-messages {
+  flex: 1;                  /* 변경: 남는 공간을 채팅 목록이 다 차지 */
+  min-height: 0;             /* 추가 */
+  max-height: none;          /* 변경: 고정 높이 제한 제거 */
+  overflow-y: auto;
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.message {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  width: fit-content;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.message.user {
+  background-color: #3b82f6;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message.assistant {
+  background-color: #334155;
+}
+
+#chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+.hidden {
+  display: none;
+}
+
+#chat-loading {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* 데이터 관리 화면 */
+#data-form, #tab-data > div {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+#data-form input, #tab-data input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #334155;
+  font-size: 14px;
+}
+
+th {
+  color: #94a3b8;
+  font-weight: normal;
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* 대화 기록 화면 */
+#history-list {
+  list-style: none;
+}
+
+#history-list li {
+  background-color: #1e293b;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#history-list li:hover {
+  background-color: #334155;
+}
+
+#history-detail {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 100px;
+}
+
+/* 요약 정보 화면 */
+#summary-coin {
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+#summary-result {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+#summary-result p {
+  margin-bottom: 8px;
+}
+
+
+@media (max-width: 600px) {
+  header {
+    padding: 12px;
+  }
+
+  header h1 {
+    font-size: 18px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  main {
+    padding: 12px;
+  }
+
+  #chat-form {
+    flex-direction: column;
+  }
+
+  #data-form, #tab-data > div {
+    flex-direction: column;
+  }
+}
